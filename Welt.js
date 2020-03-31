@@ -44,7 +44,7 @@ class Welt {
             this.virus.draw();
             if (this.virs[i].fly) {
                 if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0) {
-                    if (this.player.small() && this.player.y > 2 && this.player.y < 4 || !this.player.small && this.player.y < 4) {
+                    if (this.player.small && this.player.y > 2 && this.player.y < 4 || !this.player.small && this.player.y < 4) {
                         this.life--;
                         this.virs[i].y = 4;
                         this.virs.splice(i, 1);
