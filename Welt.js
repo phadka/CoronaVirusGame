@@ -65,9 +65,11 @@ class Welt {
         if (this.nextsp < 0.0) {
             for (var i = 0; i < dt; i++) {
                 if (Math.random() > 0.9994) {
-                    var v = new Virus();
+                    var fly;
+                    if (Math.random() > 0.5) fly = true;
+                    else fly = false;
+                    var v = new Virus(fly);
                     v.x = 18;
-                    v.y = 2;
                     this.virs.push(v);
                     this.nextsp = 500;
                 }
