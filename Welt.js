@@ -8,12 +8,21 @@ class Welt {
         this.life = 5;
         this.nextsp = 0;
         this.points = 0;
+        this.diff = 1;
     }
     draw() {
         this.uBoden();
         this.uBG();
         this.uPlayer();
         this.uVirs();
+        this.uDiff();
+    }
+    uDiff() {
+        var odiff = this.diff;
+        this.diff = Math.floor(this.points / 25) + 1;
+        if (odiff != this.diff) {
+            document.getElementById('points').innerHTML = "Punkte: " + this.points + " Schwierigkeit: " + this.diff;
+        }
     }
     uBoden() {
         for (var i = 0; i < 2 * 16; i++) {
@@ -73,12 +82,12 @@ class Welt {
                 this.virs.splice(i, 1);
                 i--;
                 this.points++;
-                document.getElementById('points').innerHTML = "Punkte: " + this.points;
+                document.getElementById('points').innerHTML = "Punkte: " + this.points + " Schwierigkeit: " + this.diff;
             }
         };
         this.nextsp -= dt;
         if (this.nextsp < 0.0) {
-            for (var i = 0; i < dt; i++) {
+            for (var i = 0; i < (dt * ((diff + 10) / 10)); i++) {
                 if (Math.random() > 0.9994) {
                     var fly;
                     if (Math.random() > 0.5) fly = true;
