@@ -1,8 +1,15 @@
 class Virus {
-    constructor() {
+    constructor(fly) {
         this.posx = 0;
         this.posy = 0;
         this.rot = 0;
+        this.bfly = fly;
+    }
+    set fly (fly) {
+        this.bfly = fly;
+    }
+    get fly() {
+        return this.fly;
     }
     set x(x) {
         this.posx = x;
@@ -25,5 +32,7 @@ class Virus {
     update() {
         this.posx -= 17.0 / 5000.0 * dt;
         this.rot += 0.3 * dt;
+        if (this.bfly) this.posy = 3;
+        else this.posy = 2;
     }
 }
