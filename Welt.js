@@ -2,6 +2,7 @@ class Welt {
     constructor() {
         this.boden = new Block('boden');
         this.virus = new Block('cv');
+        this.heart = new Block('heart');
         this.bg = new BG();
         this.player = new Player();
         this.virs = [];
@@ -9,6 +10,8 @@ class Welt {
         this.nextsp = 0;
         this.points = 0;
         this.diff = 1;
+        this.nextheart = 0;
+        this.bheart = false;
     }
     draw() {
         this.uBoden();
@@ -16,6 +19,23 @@ class Welt {
         this.uPlayer();
         this.uVirs();
         this.uDiff();
+        this.uHeart();
+    }
+    uHeart() {
+        if (this.bheart) {
+            this.heart.draw();
+        }
+        this.nextheart -= dt;
+        if (this.life < 5 && !this.bheart && this.nextheart < 0.0) {
+            this.bheart = true;
+            this.heart.x = Math.floor(Math.random() * 13);
+            this.heart.y = 2;
+        }
+        if (this.bheart && this.player.x - this.heart.x < 1.0 && this.player.x - this.heart.x > -1.0 && this.player.y < 3.0) {
+            this.life++;
+            this.bheart = false;
+            this.nextheart = 10000;
+        }
     }
     uDiff() {
         var odiff = this.diff;
