@@ -19,7 +19,7 @@ class Player extends TVBO {
         return bsmall;
     }
     set small(b) {
-        this.bsmall = true;
+        this.bsmall = b;
     }
     update() {
         if (keys[3]) this.posx += 17 / 5000 * dt;
