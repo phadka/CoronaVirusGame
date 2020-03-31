@@ -12,10 +12,19 @@ class Player extends TVBO {
         super('player', playerdata);
         this.posx = 0.0;
         this.posy = 2.0;
+        this.bsmall = false;
+    }
+    get small() {
+        return bsmall;
+    }
+    set small(b) {
+        this.bsmall = true;
     }
     update() {
         if (keys[3]) this.posx += 17 / 5000 * dt;
         if (keys[2]) this.posx -= 17 / 5000 * dt;
+        if (keys[1]) this.bsmall = true;
+        else this.bsmall = false;
         if (this.posx > 17) this.posx = -1;
         if (this.posx < -1) this.posx = 17;
         
