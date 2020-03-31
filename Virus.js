@@ -9,7 +9,7 @@ class Virus {
         this.bfly = fly;
     }
     get fly() {
-        return this.fly;
+        return this.bfly;
     }
     set x(x) {
         this.posx = x;
