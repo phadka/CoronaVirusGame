@@ -87,7 +87,7 @@ class Welt {
         };
         this.nextsp -= dt;
         if (this.nextsp < 0.0) {
-            for (var i = 0; i < (dt * ((diff + 10) / 10)); i++) {
+            for (var i = 0; i < (dt * ((this.diff + 10) / 10)); i++) {
                 if (Math.random() > 0.9994) {
                     var fly;
                     if (Math.random() > 0.5) fly = true;
