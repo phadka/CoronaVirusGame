@@ -19,7 +19,7 @@ class Welt {
     }
     uDiff() {
         var odiff = this.diff;
-        this.diff = Math.floor(this.points / 25) + 1;
+        this.diff = Math.floor(this.points / 20) + 1;
         if (odiff != this.diff) {
             document.getElementById('points').innerHTML = "Punkte: " + this.points + " Schwierigkeit: " + this.diff;
         }
@@ -87,7 +87,7 @@ class Welt {
         };
         this.nextsp -= dt;
         if (this.nextsp < 0.0) {
-            for (var i = 0; i < (dt * ((this.diff + 10) / 10)); i++) {
+            for (var i = 0; i < (dt * ((this.diff + 4) / 5)); i++) {
                 if (Math.random() > 0.9994) {
                     var fly;
                     if (Math.random() > 0.5) fly = true;
