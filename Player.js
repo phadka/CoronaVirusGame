@@ -16,7 +16,7 @@ class Player extends TVBO {
         this.bsmall = false;
     }
     get small() {
-        return bsmall;
+        return this.bsmall;
     }
     set small(b) {
         this.bsmall = b;
