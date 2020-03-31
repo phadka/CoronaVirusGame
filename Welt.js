@@ -42,17 +42,32 @@ class Welt {
             this.virus.y = this.virs[i].y;
             this.virus.rotation = this.virs[i].rotation;
             this.virus.draw();
-            
-            if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0 && this.player.y < 3.0) {
-                this.life--;
-                this.virs[i].y = 4;
-                this.virs.splice(i, 1);
-                i--;
-                if (this.life <= 0) {
-                    document.write("Spiel Verloren :(");
-                    gameover = true;
+            if (this.virs[i].fly) {
+                if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0) {
+                    if (this.player.small() && this.player.y > 2 && this.player.y < 4 || !this.player.small && this.player.y < 4) {
+                        this.life--;
+                        this.virs[i].y = 4;
+                        this.virs.splice(i, 1);
+                        i--;
+                        if (this.life <= 0) {
+                            document.write("Spiel Verloren :(");
+                            gameover = true;
+                        }
+                        continue;
+                    }
                 }
-                continue;
+            } else {
+                if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0 && this.player.y < 3.0) {
+                    this.life--;
+                    this.virs[i].y = 4;
+                    this.virs.splice(i, 1);
+                    i--;
+                    if (this.life <= 0) {
+                        document.write("Spiel Verloren :(");
+                        gameover = true;
+                    }
+                    continue;
+                }
             }
             if (this.virs[i].x < -1.0) {
                 this.virs.splice(i, 1);
