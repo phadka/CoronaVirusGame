@@ -10,6 +10,7 @@ var playerdata =
 class Player extends TVBO {
     constructor() {
         super('player', playerdata);
+        this.smallp = new Block('players');
         this.posx = 0.0;
         this.posy = 2.0;
         this.bsmall = false;
@@ -56,5 +57,10 @@ class Player extends TVBO {
                 this.posy = 2.0;
             }
         }
+    }
+    draws() {
+        this.smallp.x = this.posx;
+        this.smallp.y = this.posy;
+        this.smallp.draw();
     }
 }
