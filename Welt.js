@@ -30,7 +30,8 @@ class Welt {
     uPlayer() {
         this.player.update();
         gl.uniform1f(gl.getUniformLocation(getProgram(), 'green'), (5 - this.life) * 0.2);
-        this.player.draw();
+        if (this.player.small) this.player.draws();
+        else this.player.draw();
         gl.uniform1f(gl.getUniformLocation(getProgram(), 'green'), 0);
         
     }
