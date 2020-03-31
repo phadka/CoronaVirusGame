@@ -10,7 +10,7 @@ var playerdata =
 class Player extends TVBO {
     constructor() {
         super('player', playerdata);
-        this.smallp = new Block('players');
+        this.smallp = new Block('splayer');
         this.posx = 0.0;
         this.posy = 2.0;
         this.bsmall = false;
