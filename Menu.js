@@ -12,5 +12,13 @@ class Menu {
         } else {
             drawText('Spielen', 800, 550, 90, true);
         }
-    }    
+        if (mouseY > 405 && mouseY < 495 && mouseX > 650 && mouseY < 950) {
+            drawText('Level', 800, 450, 90, true, 'grey');
+            if (mouseClick) {
+
+            }
+        } else {
+            drawText('Level', 800, 450, 90 true);
+        }
+    }
 }
