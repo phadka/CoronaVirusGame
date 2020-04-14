@@ -1,24 +1,39 @@
 class Menu {
     constructor() {
         this.bg = new BG2();
+        this.mode = 'main';
     }
     draw() {
+        if (this.mode == 'main') {
+            this.drawMain();
+        } else if (this.mode == 'levels') {
+            this.drawLevels();
+        }
+    }
+    drawLevels() {
         this.bg.draw();
-        if (mouseY > 505 && mouseY < 595 && mouseX > 650 && mouseX < 950) {
-            drawText('Spielen', 800, 550, 90, true, 'grey');
+        this.drawButton('zurueck', 70, 800, 150, 200, function(origin) {
+            origin.mode = 'main';
+        });
+    }
+    drawButton(text, size, x, y, len, fun) {
+        if (mouseY > y - size / 2 && mouseY < y + size / 2 && mouseX > x - len / 2 && mouseX < x + len / 2) {
+            drawText(text, x, y, size, true, 'grey');
             if (mouseClick) {
-                mode = 'endless';
+                fun(this);
             }
         } else {
-            drawText('Spielen', 800, 550, 90, true);
+            drawText(text, x, y, size);
         }
-        if (mouseY > 405 && mouseY < 495 && mouseX > 650 && mouseY < 950) {
-            drawText('Level', 800, 450, 90, true, 'grey');
-            if (mouseClick) {
-
-            }
-        } else {
-            drawText('Level', 800, 450, 90 true);
-        }
+    }
+    drawMain() {
+        this.bg.draw();
+        this.drawButton('Spielen', 90, 800, 550, 300, function() {
+            mode = 'endless';
+        });
+        var tmode = this.mode;
+        this.drawButton('Level', 70, 800, 400, 200, function(origin) {
+            origin.mode = 'levels';
+        });
     }
 }
