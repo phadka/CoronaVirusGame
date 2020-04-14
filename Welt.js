@@ -38,8 +38,7 @@ class Welt {
         this.diff = 1;
         this.nextheart = 0;
         this.bheart = false;
-        this.player.x = 0;
-        this.player.y = 2;
+        this.player = new Player();
     }
     uLasers() {
         for (var i = 0; i < this.lasers.length; i++) {
@@ -48,13 +47,13 @@ class Welt {
             this.laser.y = this.lasers[i].y;
             this.laser.rotation = this.lasers[i].rotation / 3.14 * 360;
             this.laser.draw();
-            
+
             if (this.lasers[i].x > 17 || this.lasers[i].x < -1 || this.lasers[i].y < -1 || this.lasers[i].y > 10) {
                 this.lasers.splice(i, 1);
-                i--; 
+                i--;
                 continue;
             }
-            for (var k = 0; k < this.virs.length; k++) { 
+            for (var k = 0; k < this.virs.length; k++) {
                 if (this.lasers[i].x - this.virs[k].x < 1 && this.lasers[i].x - this.virs[k].x > -1 && this.lasers[i].y - this.virs[k].y < 0.8 && this.lasers[i].y - this.virs[k].y > -0.8 && !this.virs[k].red) {
                     this.lasers.splice(i, 1);
                     i--;
@@ -72,7 +71,7 @@ class Welt {
             else l.y = this.player.y + 1;
             l.rotation = Math.atan((mouseY - l.y * 100 - 50) / (mouseX - l.x * 100 - 50));
             if (mouseX < this.player.x * 100) l.rotation = l.rotation + 3.14;
-            
+
             this.lasers.push(l);
             this.nextsh = 1000;
         }
@@ -114,7 +113,7 @@ class Welt {
         if (this.player.small) this.player.draws();
         else this.player.draw();
         gl.uniform1f(gl.getUniformLocation(getProgram(), 'green'), 0);
-        
+
     }
     uVirs() {
         for (var i = 0; i < this.virs.length; i++) {
