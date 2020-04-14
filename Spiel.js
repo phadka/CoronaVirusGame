@@ -155,6 +155,5 @@ var InitDemo = function() {
         
         window.requestAnimationFrame(loop);
     };
-    
     requestAnimationFrame(loop);
 }
