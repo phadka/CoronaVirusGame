@@ -1,5 +1,6 @@
-class Menu {
+class Menu extends Mode {
     constructor() {
+        super();
         this.bg = new BG2();
         this.mode = 'main';
     }
@@ -15,20 +16,23 @@ class Menu {
         this.drawButton('zurueck', 70, 800, 150, 200, function(origin) {
             origin.mode = 'main';
         });
-    }
-    drawButton(text, size, x, y, len, fun) {
-        if (mouseY > y - size / 2 && mouseY < y + size / 2 && mouseX > x - len / 2 && mouseX < x + len / 2) {
-            drawText(text, x, y, size, true, 'grey');
-            if (mouseClick) {
-                fun(this);
-            }
-        } else {
-            drawText(text, x, y, size);
-        }
+        this.drawButton('Level 1', 70, 200, 700, 200, function(origin) {
+            origin.mode = 'main';
+            mode = 'level';
+            level = new Level(10, function(l) {
+                for (var i = 0; i < 10; i++) {
+                    var nv = new Virus(false, false);
+                    nv.x = 20 + i * 3;
+                    nv.y = 2;
+                    l.virs.push(nv);
+                }
+            });
+        });
     }
     drawMain() {
         this.bg.draw();
         this.drawButton('Spielen', 90, 800, 550, 300, function() {
+            welt = new Welt();
             mode = 'endless';
         });
         var tmode = this.mode;

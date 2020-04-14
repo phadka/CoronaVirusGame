@@ -1,4 +1,4 @@
-var vertexShaderText = 
+var vertexShaderText =
 [
 'precision mediump float;',
 '',
@@ -59,15 +59,15 @@ var InitKeyCallback = function() {
     document.getElementById('text-surface').onmouseup = function(e) {
         mouseClick = false;
     }
-}   
+}
 
 var InitShaders = function() {
     var vertexShader = gl.createShader(gl.VERTEX_SHADER);
     var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    
+
     gl.shaderSource(vertexShader, vertexShaderText);
     gl.shaderSource(fragmentShader, fragmentShaderText);
-    
+
     gl.compileShader(vertexShader);
     if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
         console.error('ERROR', gl.getShaderInfoLog(vertexShader));
@@ -92,7 +92,7 @@ var InitShaders = function() {
 var getProgram;
 var keys = [false, false, false, false, false];
 var dt;
-var welt, menu, retry;
+var welt, menu, retry, level;
 var mouseX, mouseY;
 var mouseClick = false;
 var mode;
@@ -113,46 +113,47 @@ var clearText = function() {
 var InitDemo = function() {
     gl = document.getElementById('game-surface').getContext('webgl');
     ctx = document.getElementById('text-surface').getContext('2d');
-    
+
     if (!gl) {
         alert('Error');
     }
-    
+
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    
+
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    
+
     var program = InitShaders();
-    
+
     getProgram = function() {
         return program;
     }
-    
+
     InitKeyCallback();
-    
-    welt = new Welt();
-    menu = new Menu();
+
     retry = new Retry();
+    menu = new Menu();
     mode = 'menu';
-    
+
     var date = new Date();
     var lastt = date.getTime();
-    
+
     var loop = function() {
         date = new Date();
         var newt = date.getTime();
         dt = newt - lastt;
         lastt = newt;
-        
+
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         clearText();
-        
+
         if (mode == 'endless') welt.draw();
         else if (mode == 'menu') menu.draw();
         else if (mode == 'retry') retry.draw();
-        
+        else if (mode == 'level') level.draw();
+        else if (mode == 'won') retry.draw(true);
+
         window.requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);

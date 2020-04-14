@@ -16,29 +16,25 @@ class Welt {
         this.diff = 1;
         this.nextheart = 0;
         this.bheart = false;
+        retry.onRetry = function() {
+            welt = new Welt();
+            mode = 'endless';
+            points = 0;
+        };
     }
     draw() {
         drawText('Punkte: ' + points + ' Schwierigkeit: ' + this.diff, 10, 880, 20, false);
-        if (this.gameover) return;
         this.uBoden();
         this.uBG();
         this.uPlayer();
         this.uVirs();
+        this.uNVirs();
         this.uDiff();
         this.uHeart();
         this.uLasers();
     }
     endGame() {
         mode = 'retry';
-        this.virs = [];
-        this.lasers = [];
-        this.life = 5;
-        this.nextsp = 0;
-        this.nextsh = 0;
-        this.diff = 1;
-        this.nextheart = 0;
-        this.bheart = false;
-        this.player = new Player();
     }
     uLasers() {
         for (var i = 0; i < this.lasers.length; i++) {
@@ -133,6 +129,7 @@ class Welt {
                 if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0) {
                     if (this.player.small && this.player.y > 2 && this.player.y < 4 || !this.player.small && this.player.y < 4) {
                         this.life--;
+                        points++;
                         this.virs.splice(i, 1);
                         i--;
                         if (this.life <= 0) {
@@ -144,6 +141,7 @@ class Welt {
             } else {
                 if (this.virs[i].x - this.player.x < 1.0 && this.virs[i].x - this.player.x > -1.0 && this.player.y < 3.0) {
                     this.life--;
+                    points++;
                     this.virs.splice(i, 1);
                     i--;
                     if (this.life <= 0) {
@@ -158,6 +156,8 @@ class Welt {
                 points++;
             }
         };
+    }
+    uNVirs() {
         this.nextsp -= dt;
         if (this.nextsp < 0.0) {
             for (var i = 0; i < dt * ((this.diff + 1) / 2); i++) {
