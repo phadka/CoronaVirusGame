@@ -1,4 +1,4 @@
-var playerdata = 
+var playerdata =
 [
     0.0, 2.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 1.0,
@@ -28,8 +28,8 @@ class Player extends TVBO {
         if (keys[1]) this.small = true;
         else this.small = false;
 
-        if (this.x > 17) this.x = -1;
-        if (this.x < -1) this.x = 17;
+        if (this.x > 15) this.x = 15;
+        if (this.x < 0) this.x = 0;
 
         if (keys[0] && !this.jump && !this.djump) {
             this.jump = true;

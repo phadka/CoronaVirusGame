@@ -8,7 +8,7 @@ class Menu extends Mode {
         if (this.mode == 'main') {
             this.drawMain();
         } else if (this.mode == 'levels') {
-            this.drawLevels();
+            this.drawLevels(3);
         }
     }
     createLevel(levelnum) {
@@ -22,21 +22,20 @@ class Menu extends Mode {
             }
         });
     }
-    drawLevels() {
+    drawLevels(num) {
         this.bg.draw();
         this.drawButton('zurueck', 70, 800, 150, 200, function(origin) {
             origin.mode = 'main';
         });
-        this.drawButton('Level 1', 50, 200, 700, 170, function(origin) {
-            origin.createLevel(1);
-            origin.mode = 'main';
-            mode = 'level';
-        });
-        this.drawButton('Level 2', 50, 200, 600, 170, function(origin) {
-            origin.createLevel(2);
-            origin.mode = 'main';
-            mode = 'level';
-        });
+        for (var i = 1; i < num + 1; i++) {
+            var y = 800 - 100 * i;
+            var x = 200;
+            this.drawButton('Level ' + i, 50, x, y, 170, function(origin) {
+                origin.createLevel(i);
+                origin.mode = 'main';
+                mode = 'level';
+            });
+        }
     }
     drawMain() {
         this.bg.draw();
