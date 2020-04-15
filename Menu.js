@@ -8,7 +8,7 @@ class Menu extends Mode {
         if (this.mode == 'main') {
             this.drawMain();
         } else if (this.mode == 'levels') {
-            this.drawLevels(5);
+            this.drawLevels(20);
         }
     }
     createLevel(levelnum) {
@@ -28,12 +28,13 @@ class Menu extends Mode {
             origin.mode = 'main';
         });
         for (var i = 1; i < num + 1; i++) {
-            var y = 800 - 100 * i;
-            var x = 200;
+            var y = 775 - 100 * ((i - 1) % 5);
+            var x = 200 + 400 * (Math.floor((i - 1) / 5));
             this.drawButton('Level ' + i, 50, x, y, 170, function(origin) {
                 origin.createLevel(i);
                 origin.mode = 'main';
                 mode = 'level';
+                document.title = 'Level ' + i;
             });
         }
     }
@@ -42,6 +43,7 @@ class Menu extends Mode {
         this.drawButton('Spielen', 90, 800, 550, 300, function() {
             welt = new Welt();
             mode = 'endless';
+            document.title = 'Escape Coronavirus';
         });
         var tmode = this.mode;
         this.drawButton('Level', 70, 800, 400, 200, function(origin) {

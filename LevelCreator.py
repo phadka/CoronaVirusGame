@@ -8,8 +8,8 @@ def createLevel(num, nextmin, nextmax, fly, red, name):
         output += ("%.1f" % xs[i]) + ", "
     output += "%.1f" % xs[num - 1] + "];\n"
 
-    flys = [False]
-    for i in range(num - 1):
+    flys = []
+    for i in range(num):
         if (random.random() < fly):
             flys.append(True)
         else:
@@ -25,8 +25,8 @@ def createLevel(num, nextmin, nextmax, fly, red, name):
     else:
         output += "false];\n"
 
-    reds = [False]
-    for i in range(num - 1):
+    reds = []
+    for i in range(num):
         if (random.random() < red):
             reds.append(True)
         else:
@@ -44,3 +44,12 @@ def createLevel(num, nextmin, nextmax, fly, red, name):
 
     output += "var " + name + "s = " + str(num) + ";"
     print(output)
+    
+def createLine(num):
+    text = "var leveldata = ["
+    for i in range(num):
+        text += "level" + str(i + 1) + " ,level" + str(i + 1) + "f, level" + str(i + 1) + "r, level" + str(i + 1) + "s"
+        if i is not num - 1:
+            text += ", "
+    text += "];"
+    print(text)

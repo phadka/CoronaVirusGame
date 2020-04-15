@@ -13,7 +13,8 @@ class Retry extends Mode{
         this.drawButton('Nochmal versuchen', 70, 800, 400, 500, this.action);
         this.drawButton('zum Hauptmenu', 70, 800, 150, 525, function() {
             mode = 'menu';
-            points= 0;
+            points = 0;
+            document.title = 'Escape Coronavirus';
         });
     }
 }
