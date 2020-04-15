@@ -8,7 +8,7 @@ class Menu extends Mode {
         if (this.mode == 'main') {
             this.drawMain();
         } else if (this.mode == 'levels') {
-            this.drawLevels(3);
+            this.drawLevels(5);
         }
     }
     createLevel(levelnum) {
