@@ -92,7 +92,7 @@ var InitShaders = function() {
 var getProgram;
 var keys = [false, false, false, false, false];
 var dt;
-var welt, menu, retry, level;
+var welt, menu, retry, level, bosslevel;
 var mouseX, mouseY;
 var mouseClick = false;
 var mode;
@@ -153,6 +153,7 @@ var InitDemo = function() {
         else if (mode == 'retry') retry.draw();
         else if (mode == 'level') level.draw();
         else if (mode == 'won') retry.draw(true);
+        else if (mode == 'boss') bosslevel.draw();
 
         window.requestAnimationFrame(loop);
     };

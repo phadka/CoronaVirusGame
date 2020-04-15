@@ -9,6 +9,8 @@ class Menu extends Mode {
             this.drawMain();
         } else if (this.mode == 'levels') {
             this.drawLevels(20);
+        } else if (this.mode == 'bosses') {
+            this.drawBosses();
         }
     }
     createLevel(levelnum) {
@@ -24,8 +26,11 @@ class Menu extends Mode {
     }
     drawLevels(num) {
         this.bg.draw();
-        this.drawButton('zurueck', 70, 800, 150, 200, function(origin) {
+        this.drawButton('zurueck', 70, 533, 150, 200, function(origin) {
             origin.mode = 'main';
+        });
+        this.drawButton('weiter', 70, 1067, 150, 200, function(origin) {
+            origin.mode = 'bosses';
         });
         for (var i = 1; i < num + 1; i++) {
             var y = 775 - 100 * ((i - 1) % 5);
@@ -37,6 +42,19 @@ class Menu extends Mode {
                 document.title = 'Level ' + i;
             });
         }
+    }
+    drawBosses() {
+        this.bg.draw();
+        this.drawButton('zurueck', 70, 533, 150, 200, function(origin) {
+            origin.mode = 'levels';
+            mouseClick = false;
+        });
+        this.drawButton('Boss 1', 50, 200, 775, 170, function(origin) {
+            origin.mode = 'main';
+            mode = 'boss';
+            document.title = 'Boss 1';
+            bosslevel = new Bosslevel();
+        });
     }
     drawMain() {
         this.bg.draw();
