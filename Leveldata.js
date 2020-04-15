@@ -1,0 +1,9 @@
+var level1 = [0, 5, 8, 12, 15.4, 19, 21, 25, 30, 33];
+var level1f = [false, false, true, false, true, true, false, false, false, true];
+var level1r = [false, false, false, false, false, false, false, false, false, false];
+var level1s = 10;
+var level2 = [0, 4, 8, 10, 12.5, 15, 20, 24, 25.5, 29, 31, 34, 36.5, 40, 42, 46];
+var level2f = [false, false, true, false, true, false, false, true, true, true, true, false, false, false, true];
+var level2r = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+var level2s = 15;
+var leveldata = [level1, level1f, level1r, level1s, level2, level2f, level2r, level2s];

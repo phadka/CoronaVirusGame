@@ -11,22 +11,31 @@ class Menu extends Mode {
             this.drawLevels();
         }
     }
+    createLevel(levelnum) {
+        var index = levelnum - 1;
+        var size = leveldata[index * 4 + 3];
+        level = new Level(size, function(l) {
+            for (var i = 0; i < size; i++) {
+                var nv = new Virus(leveldata[index * 4 + 1][i], leveldata[index * 4 + 2][i]);
+                nv.x = 20 + leveldata[index * 4][i];
+                l.virs.push(nv);
+            }
+        });
+    }
     drawLevels() {
         this.bg.draw();
         this.drawButton('zurueck', 70, 800, 150, 200, function(origin) {
             origin.mode = 'main';
         });
-        this.drawButton('Level 1', 70, 200, 700, 200, function(origin) {
+        this.drawButton('Level 1', 50, 200, 700, 170, function(origin) {
+            origin.createLevel(1);
             origin.mode = 'main';
             mode = 'level';
-            level = new Level(10, function(l) {
-                for (var i = 0; i < 10; i++) {
-                    var nv = new Virus(false, false);
-                    nv.x = 20 + i * 3;
-                    nv.y = 2;
-                    l.virs.push(nv);
-                }
-            });
+        });
+        this.drawButton('Level 2', 50, 200, 600, 170, function(origin) {
+            origin.createLevel(2);
+            origin.mode = 'main';
+            mode = 'level';
         });
     }
     drawMain() {

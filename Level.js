@@ -17,7 +17,6 @@ class Level extends Welt {
         this.uBG();
         this.uPlayer();
         this.uVirs();
-        this.uHeart();
         this.uLasers();
     }
 }
